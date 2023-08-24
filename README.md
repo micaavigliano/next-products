@@ -1,9 +1,9 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+Challenge Mercado Libre frontend hecho con Next, Typescript y Styled Components
 
 ## Getting Started
-
-First, run the development server:
-
+1. Clonar el repo
+2. Correr `npm i` para instalar todas las dependencias necesarias
+3. Correr el servidor:
 ```bash
 npm run dev
 # or
@@ -11,24 +11,18 @@ yarn dev
 # or
 pnpm dev
 ```
+4. Abrir [http://localhost:3000](http://localhost:3000) en el browser para ver el resultado
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Qué hice?
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+- Hice una aplicación FullStack generando el servidor(back) y consumiendo la data del mismo desde el cliente (front). Es enteramente hecho desde Next.js utilizando Javascript.
+- La aplicación esta pensada para que sea lo más accesible y escalable posible.
+- Consta de 3 vistas: Home, Lista de productos y descripción del item elegido
+- Decidí en esta ocasión no utilizar un store management, tales como Recoil, Redux o useContext API,  debido al tamaño de la aplicación. Por lo que, para el manejo de data entre vistas decidí utilizar la data de las queries.
+- Me enfoqué en la accesibilidad de la aplicación y en la reutilización de components. La aplicación cuenta con una estructura semántica lógica, aria-labels y announcements para usuarios que utlizan screen readers. Estos announcements se encuentran en textos dinámicos, tales como alertas para avisar que no se encontraron productos, cuántos productos se encontraron y el loading.
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+## Para complementar
+- Agregar tests con React Testing Library
+- Agregar i18n para menajar la internalización de los textos
+- Implementar un ppequeño store management
 
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
