@@ -1,26 +1,34 @@
 import { NextApiRequest, NextApiResponse } from 'next';
 import { Item } from '../types/item';
-import { Author } from '../types/common'
+import { Author, Attributes } from '../types/common'
 import axios from 'axios';
 import _ from 'lodash'
 
 export default async function getitem(req: NextApiRequest, res: NextApiResponse) {
   try {
     const { itemId } = req.query;
-    console.log(itemId)
     const product = await axios.get(`https://api.mercadolibre.com/items/${itemId}`)
     const description = await axios.get(`https://api.mercadolibre.com/items/${itemId}/description`)
 
+    const formattedPrice = new Intl.NumberFormat('es-AR', {
+      style: 'currency',
+      currency: 'ARS'
+    }).format(product.data.price);
+
+    const filterCondition = product.data.attributes.filter((item: Attributes) => item.id === "ITEM_CONDITION")
+
     const productInfo: Item =  {
         title: product.data.title,
-        price: product.data.price,
+        price: formattedPrice,
+        category_id: product.data.category_id,
         shipping: {
           store_pick_up: product.data.store_pick_up,
           free_shipping: product.data.free_shipping
         },
         thumbnail: product.data.thumbnail,
         currency_id: product.data.currency_id,
-        available_quantity: product.data.available_quantity
+        available_quantity: product.data.available_quantity,
+        condition: filterCondition[0]
     }
 
     const author: Author = {

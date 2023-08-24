@@ -18,36 +18,25 @@ export interface Address {
   city_name: string;
 }
 
-export interface Items {
-  currency_id: string;
-  id: string;
-  title: string;
-  price: number;
-  thumbnail: string | string[];
-  condition: Conditions;
-  free_shipping: boolean;
-  order_backend: number;
-  shipping: Shipping;
-  address: Address
-}
-
-export interface Filter {
-  path_from_root: Path[] 
-}
-
 export interface Path {
   id: string;
   name: string
 }
 
-export interface Values {
-  id: string;
-  name: string;
-  results: number
+
+export interface Filter {
+  path_from_root: Path
 }
-export interface ExtraCategory {
+
+export interface Items {
+  currency_id: string;
   id: string;
-  name: string;
-  type: string;
-  values: Values[]
+  title: string;
+  price: number;
+  thumbnail: string;
+  condition: Conditions;
+  free_shipping: boolean;
+  order_backend: number;
+  shipping: Shipping;
+  address: Address
 }
