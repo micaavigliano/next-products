@@ -21,6 +21,7 @@ export default async function getitem(req: NextApiRequest, res: NextApiResponse)
         title: product.data.title,
         price: formattedPrice,
         category_id: product.data.category_id,
+        sold_quantity: product.data.sold_quantity,
         shipping: {
           store_pick_up: product.data.store_pick_up,
           free_shipping: product.data.free_shipping

@@ -1,19 +1,14 @@
 import React, { ReactNode } from "react";
 import Footer from "../components/Footer/Footer";
-import { Container, Nav } from "./Layout.styled";
-
-import _ from "lodash";
 
 type MainLayoutProps = {
   children: ReactNode;
-  searchbar: ReactNode;
 };
 
-const MainLayout: React.FC<MainLayoutProps> = ({ children, searchbar }) => {
+const MainLayout: React.FC<MainLayoutProps> = ({ children }) => {
   return (
     <div style={{ display: "flex", flexFlow: "column", height: "100%" }}>
-      <Nav>{searchbar}</Nav>
-      <Container>{children}</Container>
+      {children}
       <Footer />
     </div>
   );

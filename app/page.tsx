@@ -6,10 +6,26 @@ import { useRouter } from "next/navigation";
 import Loading from "./Loading";
 import axios from "axios";
 import Message from "@/components/Message/Message";
-import Breadcrumb from "@/components/BreadCrumb/Breadcrumb";
 import { Conditions, Shipping, Address } from "../components/utils/items";
-import Layout from "../components/Layout";
+import Layout from "@/components/Layout";
 import _ from "lodash";
+import { styled } from "styled-components";
+import colors from "@/utils/colors";
+
+export const Container = styled.main`
+  padding-left: 10%;
+  padding-right: 10%;
+  background-color: ${colors.GREY};
+  height: 90vh;
+  overflow: auto;
+  text-aling: center;
+`;
+
+export const Nav = styled.header`
+  background-color: ${colors.YELLOW};
+  height: 100px;
+  position: relative;
+`;
 
 interface Item {
   item: {
@@ -35,7 +51,6 @@ const Home = () => {
   const [loading, setLoading] = useState<Boolean>(true);
 
   const router = useRouter();
-  const hasData = !_.isEmpty(items);
 
   const getItems = useCallback(async (q: string) => {
     try {
@@ -46,7 +61,7 @@ const Home = () => {
     } catch (error) {
       console.error(error);
     }
-  }, []);
+  }, [router]);
 
   useEffect(() => {
     setLoading(false);
@@ -66,14 +81,17 @@ const Home = () => {
   return (
     <>
       {loading && <Loading />}
-      <Layout
-        searchbar={
-          <SearchBar onSubmit={(query: string) => searchItems(query)} />
-        }
-        children={
-          <>{!hasData && <Message>type to start searching!</Message>}</>
-        }
-      />
+      <Layout>
+        <>
+        <Nav>
+        <SearchBar onSubmit={(query: string) => searchItems(query)} />
+        </Nav>
+      <Container>
+      <Message>Escribí en el buscador para comenzar tu búsqueda</Message>
+      </Container>
+      </>
+      </Layout>
+      
     </>
   );
 };

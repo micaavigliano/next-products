@@ -1,4 +1,3 @@
-"use client";
 import React, { useEffect, useCallback, useState } from "react";
 
 import "../../app/globals.css";
@@ -13,6 +12,7 @@ import {
   InfoContainer,
   Info,
   DescContainer,
+  Button, Nav, ContainerMain
 } from "@/components/Product/Product.styled";
 import Loading from "@/app/Loading";
 import _ from "lodash";
@@ -48,39 +48,50 @@ const ItemDetails: React.FC = () => {
       router.push(`/`);
     }
     router.push(`/items?query=${query}`);
-  }, []);
+  }, [router]);
 
   useEffect(() => {
     setLoading(true);
     if (id) {
       getProduct(id);
     }
-  }, [id]);
+  }, [id, getProduct]);
 
   return (
-    <Layout
-      searchbar={<SearchBar onSubmit={(query: string) => searchItems(query)} />}
-      children={
-        <>
-          {loading && <Loading />}
-          <Breadcrumb categories={categories} />
+    <>
+    {loading && <Loading/>}
+    <Layout>
+      <>
+      <Nav>
+      <SearchBar onSubmit={(query: string) => searchItems(query)} />
+      </Nav>
+      <ContainerMain><Breadcrumb categories={categories} />
           <Container>
             <InfoContainer>
               <ImgContainer>
-                <Img src={product.item?.thumbnail} />
+                <Img src={product.item?.thumbnail} alt=""/>
               </ImgContainer>
               <Info>
-                <p>{product.item?.available_quantity}</p>
-                <p>{product.item?.condition.value_name}</p>
-                <p>{product.item?.title}</p>
-                <p>{product.item?.price}</p>
+                <div style={{ display: 'flex', flexDirection: 'row', fontSize: '0.8rem', color: 'rgba(0,0,0,.55)', fontWeight: '400' }}>
+                  <span>{product.item?.available_quantity}</span>
+                  <span style={{ margin: '0 2% 0 2%' }}>-</span>
+                  <p><span>{product.item?.sold_quantity}</span> vendidos</p>
+                </div>
+                <h2 style={{fontWeight: '600', wordBreak: 'break-word', fontSize: '1.4rem', marginTop: '2%'}}>{product.item?.title}</h2>
+                <p style={{fontSize: '1.6rem', fontWeight: '500', marginBottom: '7%'}}>{product.item?.price}</p>
+                <Button aria-label={`Comprar ${product.item?.title}`}>Comprar</Button>
               </Info>
             </InfoContainer>
-            <DescContainer>{product.desc}</DescContainer>
-          </Container>
-        </>
-      }
-    />
+            <h3 style={{ fontWeight: '400', fontSize: '1rem', paddingBottom: '3%'}}>Descripcion</h3>
+            <DescContainer>
+              <p>{product.desc}</p>
+            </DescContainer>
+          </Container></ContainerMain>
+          </>
+    </Layout>
+
+    </>
+   
   );
 };
 

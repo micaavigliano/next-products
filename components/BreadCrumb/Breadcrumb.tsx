@@ -5,7 +5,7 @@ import { Filter } from "../utils/items";
 import { Container } from "./Breadcrumb.styled";
 
 type BreadcrumbProps = {
-  categories: Filter[];
+  categories: any
 };
 
 const Breadcrumb = ({ categories }: BreadcrumbProps) => {

@@ -1,5 +1,3 @@
-"use client";
-
 import React, { ChangeEvent, useState, useCallback } from "react";
 import {
   LinkContainer,

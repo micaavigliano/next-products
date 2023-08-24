@@ -2,6 +2,7 @@ export interface Item {
   title: string;
   price: string;
   category_id: string;
+  sold_quantity: number;
   shipping: {
     store_pick_up: boolean;
     free_shipping: boolean;

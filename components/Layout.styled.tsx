@@ -11,7 +11,12 @@ export const Container = styled.main`
   padding-left: 10%;
   padding-right: 10%;
   background-color: ${colors.GREY};
-  height: 85vh;
+  height: 90vh;
   overflow: auto;
   text-aling: center;
 `;
+
+export const LoadingContainer = styled.div`
+  height: 100%;
+  width: 100%
+`

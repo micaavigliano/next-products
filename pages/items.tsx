@@ -1,5 +1,3 @@
-"use client";
-
 import React, { useCallback, useState, useEffect } from "react";
 import "../app/globals.css";
 import { useRouter } from "next/router";
@@ -10,6 +8,8 @@ import axios from "axios";
 import Breadcrumb from "@/components/BreadCrumb/Breadcrumb";
 import ListItems from "@/components/ListItems/ListItems";
 import { useSearchParams } from "next/navigation";
+import { Path } from '../components/utils/items'
+import { Nav, ContainerMain } from "@/components/Product/Product.styled";
 
 import Message from "@/components/Message/Message";
 import _ from "lodash";
@@ -28,10 +28,7 @@ interface Item {
     shipping: Shipping;
     address: Address;
   };
-  category: {
-    id: string;
-    name: string;
-  };
+  category: Path;
 }
 
 const Products = () => {
@@ -41,7 +38,7 @@ const Products = () => {
   const param = useSearchParams();
   const value = param?.get("query");
 
-  const hasData = true;
+  const hasData = !_.isEmpty(items?.category) && !_.isEmpty(items?.item);
 
   const getItems = useCallback(async (q: string) => {
     try {
@@ -76,30 +73,32 @@ const Products = () => {
       getItems(query);
       router.replace(`/items?query=${query}`);
     },
-    [getItems]
+    [getItems, router]
   );
+  
   return (
     <>
-      <Layout
-        searchbar={
-          <SearchBar onSubmit={(query: string) => searchItems(query)} />
-        }
-        children={
-          <>
-            {loading && <Loading />}
+      {loading && <Loading />}
+      <Layout>
+        <>
+          <Nav>
+            <SearchBar onSubmit={(query: string) => searchItems(query)} />
+          </Nav>
+          <ContainerMain>
             {hasData ? (
               <>
                 <Breadcrumb categories={items?.category} />
                 <ListItems item={items?.item}></ListItems>
               </>
-            ) : (
-              <Message>type to start searching! ITEMS</Message>
-            )}
-          </>
-        }
-      />
+              ) : (
+                <Message><p>No hay publicaciones que coincidan con tu busqueda</p></Message>
+              )}
+          </ContainerMain>
+        </>
+      </Layout>
     </>
   );
 };
 
 export default Products;
+

@@ -7,7 +7,7 @@ type MessageProp = {
 
 const Message: React.FC<MessageProp> = ({ children }) => {
   return (
-    <Container>
+    <Container aria-live="polite" role="status">
       <span>{children}</span>
     </Container>
   );

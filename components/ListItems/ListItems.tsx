@@ -12,7 +12,7 @@ import Link from "next/link";
 import _ from "lodash";
 
 type ListItemsProps = {
-  item: Items[];
+  item: any;
 };
 
 const ListItems: React.FC<ListItemsProps> = ({ item }) => {
@@ -28,13 +28,13 @@ const ListItems: React.FC<ListItemsProps> = ({ item }) => {
             <img
               src={item.thumbnail}
               alt="Mercado Libre Argentina - Donde comprar y vender de todo"
-              height={100}
-              width={100}
+              height="100%"
+              width="100%"
             />
           </ImgContainer>
           <InfoContainer>
-            <p>{item.price}</p>
-            <p>{item.title}</p>
+            <p style={{ color: 'black', fontSize: '24px' }}>{item.price}</p>
+            <h3>{item.title}</h3>
           </InfoContainer>
           <ZoneContainer>{item.address.state_name}</ZoneContainer>
         </Link>
