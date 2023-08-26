@@ -24,5 +24,5 @@ pnpm dev
 ## Para complementar
 - Agregar tests con React Testing Library
 - Agregar i18n para menajar la internalización de los textos
-- Implementar un ppequeño store management
+- Implementar un pequeño store management
 
