@@ -9,7 +9,7 @@ import Message from "@/components/Message/Message";
 import { Conditions, Shipping, Address } from "../components/utils/items";
 import Layout from "@/components/Layout";
 import _ from "lodash";
-import { styled } from "styled-components";
+import styled from "styled-components";
 import colors from "@/utils/colors";
 
 export const Container = styled.main`
@@ -83,15 +83,15 @@ const Home = () => {
       {loading && <Loading />}
       <Layout>
         <>
-        <Nav>
-        <SearchBar onSubmit={(query: string) => searchItems(query)} />
-        </Nav>
-      <Container>
-      <Message>Escribí en el buscador para comenzar tu búsqueda</Message>
-      </Container>
-      </>
+          <Nav>
+            <SearchBar onSubmit={(query: string) => searchItems(query)} />
+          </Nav>
+          <Container>
+            <Message>Escribí en el buscador para comenzar tu búsqueda</Message>
+          </Container>
+        </>
       </Layout>
-      
+
     </>
   );
 };

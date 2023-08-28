@@ -1,3 +1,5 @@
+"use client"
+
 import React, { useEffect, useCallback, useState } from "react";
 
 import "../../app/globals.css";
@@ -59,39 +61,39 @@ const ItemDetails: React.FC = () => {
 
   return (
     <>
-    {loading && <Loading/>}
-    <Layout>
-      <>
-      <Nav>
-      <SearchBar onSubmit={(query: string) => searchItems(query)} />
-      </Nav>
-      <ContainerMain><Breadcrumb categories={categories} />
-          <Container>
-            <InfoContainer>
-              <ImgContainer>
-                <Img src={product.item?.thumbnail} alt=""/>
-              </ImgContainer>
-              <Info>
-                <div style={{ display: 'flex', flexDirection: 'row', fontSize: '0.8rem', color: 'rgba(0,0,0,.55)', fontWeight: '400' }}>
-                  <span>{product.item?.available_quantity}</span>
-                  <span style={{ margin: '0 2% 0 2%' }}>-</span>
-                  <p><span>{product.item?.sold_quantity}</span> vendidos</p>
-                </div>
-                <h2 style={{fontWeight: '600', wordBreak: 'break-word', fontSize: '1.4rem', marginTop: '2%'}}>{product.item?.title}</h2>
-                <p style={{fontSize: '1.6rem', fontWeight: '500', marginBottom: '7%'}}>{product.item?.price}</p>
-                <Button aria-label={`Comprar ${product.item?.title}`}>Comprar</Button>
-              </Info>
-            </InfoContainer>
-            <h3 style={{ fontWeight: '400', fontSize: '1rem', paddingBottom: '3%'}}>Descripcion</h3>
-            <DescContainer>
-              <p>{product.desc}</p>
-            </DescContainer>
-          </Container></ContainerMain>
-          </>
-    </Layout>
+      {loading && <Loading />}
+      <Layout>
+        <>
+          <Nav>
+            <SearchBar onSubmit={(query: string) => searchItems(query)} />
+          </Nav>
+          <ContainerMain><Breadcrumb categories={categories} />
+            <Container>
+              <InfoContainer>
+                <ImgContainer>
+                  <Img src={product.item?.thumbnail} alt="" />
+                </ImgContainer>
+                <Info>
+                  <div style={{ display: 'flex', flexDirection: 'row', fontSize: '0.8rem', color: 'rgba(0,0,0,.55)', fontWeight: '400' }}>
+                    <span>{product.item?.available_quantity}</span>
+                    <span style={{ margin: '0 2% 0 2%' }}>-</span>
+                    <p><span>{product.item?.sold_quantity}</span> vendidos</p>
+                  </div>
+                  <h2 style={{ fontWeight: '600', wordBreak: 'break-word', fontSize: '1.4rem', marginTop: '2%' }}>{product.item?.title}</h2>
+                  <p style={{ fontSize: '1.6rem', fontWeight: '500', marginBottom: '7%' }}>{product.item?.price}</p>
+                  <Button aria-label={`Comprar ${product.item?.title}`}>Comprar</Button>
+                </Info>
+              </InfoContainer>
+              <h3 style={{ fontWeight: '400', fontSize: '1rem', paddingBottom: '3%' }}>Descripcion</h3>
+              <DescContainer>
+                <p>{product.desc}</p>
+              </DescContainer>
+            </Container></ContainerMain>
+        </>
+      </Layout>
 
     </>
-   
+
   );
 };
 

@@ -14,13 +14,14 @@ export const Item = styled.li`
   border-radius: 4px;
   margin: 2%;
   background-color: white;
+
 `;
 
 export const ImgContainer = styled.div`
   width: 20%;
-  height: 100%;
   border-right: 1px solid lightgrey;
-  margin-right: 2%
+  margin-right: 2%;
+
 `;
 
 export const InfoContainer = styled.div`
@@ -43,3 +44,8 @@ export const HiddenMsg = styled.div`
   width: 1px;
   height: 1px;
 `;
+
+export const Img = styled.img`
+  width: 100%;
+  height: 100%
+`

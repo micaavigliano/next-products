@@ -6,6 +6,7 @@ import {
   InfoContainer,
   ZoneContainer,
   HiddenMsg,
+  Img
 } from "./ListItems.styled";
 import { Items } from "../utils/items";
 import Link from "next/link";
@@ -23,13 +24,12 @@ const ListItems: React.FC<ListItemsProps> = ({ item }) => {
         <Link
           href={`/item/${item.id}`}
           style={{ width: "100%", display: "flex", flexDirection: "row" }}
+          aria-label={`Clickea aqui para ir a la descripcion del producto ${item.title}`}
         >
           <ImgContainer>
-            <img
+            <Img
               src={item.thumbnail}
-              alt="Mercado Libre Argentina - Donde comprar y vender de todo"
-              height="100%"
-              width="100%"
+              alt={item.title}
             />
           </ImgContainer>
           <InfoContainer>

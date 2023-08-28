@@ -1,10 +1,10 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  experimental: {
-    appDir: true,
-  },
   compiler: {
-    styledComponents: true,
+    styledComponents: {
+      displayName: true,
+      ssr: true
+    },
   }
 }
 
