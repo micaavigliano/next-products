@@ -2,7 +2,7 @@ import { NextApiRequest, NextApiResponse } from 'next';
 import { Items, Filter, ExtraCategory } from './types/products'
 import {Author} from './types/common'
 import axios from 'axios';
-import _ from 'lodash'
+import { isEmpty } from 'lodash'
 
 export default async function getprops(req: NextApiRequest, res: NextApiResponse) {
   try {
@@ -39,12 +39,12 @@ export default async function getprops(req: NextApiRequest, res: NextApiResponse
       }
     })
 
-    const categories = !_.isEmpty(response.data.filters) ? response.data.filters[0].values.flatMap((filter: Filter) => {
+    const categories = !isEmpty(response.data.filters) ? response.data.filters[0].values.flatMap((filter: Filter) => {
       const path_values = filter.path_from_root
       return path_values
     }) : []
 
-    const available_filters = !_.isEmpty(response.data.filters) ? response.data.available_filters.filter((category: ExtraCategory) => category.id === 'category') : []
+    const available_filters = !isEmpty(response.data.filters) ? response.data.available_filters.filter((category: ExtraCategory) => category.id === 'category') : []
 
     const author: Author = {
       name: 'Micaela',

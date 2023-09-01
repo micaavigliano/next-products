@@ -8,7 +8,6 @@ import axios from "axios";
 import Message from "@/components/Message/Message";
 import { Conditions, Shipping, Address } from "../components/utils/items";
 import Layout from "@/components/Layout";
-import _ from "lodash";
 import styled from "styled-components";
 import colors from "@/utils/colors";
 
@@ -52,16 +51,19 @@ const Home = () => {
 
   const router = useRouter();
 
-  const getItems = useCallback(async (q: string) => {
-    try {
-      const res = await axios.get(`api/getproducts?q=${q}`);
-      setItems(res.data);
-      setLoading(false);
-      router.push(`/items?query=${q}`);
-    } catch (error) {
-      console.error(error);
-    }
-  }, [router]);
+  const getItems = useCallback(
+    async (q: string) => {
+      try {
+        const res = await axios.get(`api/getproducts?q=${q}`);
+        setItems(res.data);
+        setLoading(false);
+        router.push(`/items?query=${q}`);
+      } catch (error) {
+        console.error(error);
+      }
+    },
+    [router]
+  );
 
   useEffect(() => {
     setLoading(false);
@@ -91,7 +93,6 @@ const Home = () => {
           </Container>
         </>
       </Layout>
-
     </>
   );
 };

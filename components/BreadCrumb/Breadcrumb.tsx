@@ -1,15 +1,14 @@
 import React from "react";
-import _ from "lodash";
+import { isEmpty } from "lodash";
 import Link from "next/link";
-import { Filter } from "../utils/items";
 import { Container } from "./Breadcrumb.styled";
 
 type BreadcrumbProps = {
-  categories: any
+  categories: any;
 };
 
 const Breadcrumb = ({ categories }: BreadcrumbProps) => {
-  const hasCategory = !_.isEmpty(categories);
+  const hasCategory = !isEmpty(categories);
 
   return (
     <Container aria-label="breadcrumb">

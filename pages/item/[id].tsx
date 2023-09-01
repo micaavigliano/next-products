@@ -1,4 +1,4 @@
-"use client"
+"use client";
 
 import React, { useEffect, useCallback, useState } from "react";
 
@@ -14,10 +14,12 @@ import {
   InfoContainer,
   Info,
   DescContainer,
-  Button, Nav, ContainerMain
+  Button,
+  Nav,
+  ContainerMain,
 } from "@/components/Product/Product.styled";
 import Loading from "@/app/Loading";
-import _ from "lodash";
+import { isEmpty } from "lodash";
 
 import axios from "axios";
 
@@ -43,14 +45,17 @@ const ItemDetails: React.FC = () => {
     }
   }, []);
 
-  const categories = !_.isEmpty(category) ? category.path_from_root : [];
+  const categories = !isEmpty(category) ? category.path_from_root : [];
 
-  const searchItems = useCallback((query: string) => {
-    if (query === "") {
-      router.push(`/`);
-    }
-    router.push(`/items?query=${query}`);
-  }, [router]);
+  const searchItems = useCallback(
+    (query: string) => {
+      if (query === "") {
+        router.push(`/`);
+      }
+      router.push(`/items?query=${query}`);
+    },
+    [router]
+  );
 
   useEffect(() => {
     setLoading(true);
@@ -67,33 +72,70 @@ const ItemDetails: React.FC = () => {
           <Nav>
             <SearchBar onSubmit={(query: string) => searchItems(query)} />
           </Nav>
-          <ContainerMain><Breadcrumb categories={categories} />
+          <ContainerMain>
+            <Breadcrumb categories={categories} />
             <Container>
               <InfoContainer>
                 <ImgContainer>
                   <Img src={product.item?.thumbnail} alt="" />
                 </ImgContainer>
                 <Info>
-                  <div style={{ display: 'flex', flexDirection: 'row', fontSize: '0.8rem', color: 'rgba(0,0,0,.55)', fontWeight: '400' }}>
+                  <div
+                    style={{
+                      display: "flex",
+                      flexDirection: "row",
+                      fontSize: "0.8rem",
+                      color: "rgba(0,0,0,.55)",
+                      fontWeight: "400",
+                    }}
+                  >
                     <span>{product.item?.available_quantity}</span>
-                    <span style={{ margin: '0 2% 0 2%' }}>-</span>
-                    <p><span>{product.item?.sold_quantity}</span> vendidos</p>
+                    <span style={{ margin: "0 2% 0 2%" }}>-</span>
+                    <p>
+                      <span>{product.item?.sold_quantity}</span> vendidos
+                    </p>
                   </div>
-                  <h2 style={{ fontWeight: '600', wordBreak: 'break-word', fontSize: '1.4rem', marginTop: '2%' }}>{product.item?.title}</h2>
-                  <p style={{ fontSize: '1.6rem', fontWeight: '500', marginBottom: '7%' }}>{product.item?.price}</p>
-                  <Button aria-label={`Comprar ${product.item?.title}`}>Comprar</Button>
+                  <h2
+                    style={{
+                      fontWeight: "600",
+                      wordBreak: "break-word",
+                      fontSize: "1.4rem",
+                      marginTop: "2%",
+                    }}
+                  >
+                    {product.item?.title}
+                  </h2>
+                  <p
+                    style={{
+                      fontSize: "1.6rem",
+                      fontWeight: "500",
+                      marginBottom: "7%",
+                    }}
+                  >
+                    {product.item?.price}
+                  </p>
+                  <Button aria-label={`Comprar ${product.item?.title}`}>
+                    Comprar
+                  </Button>
                 </Info>
               </InfoContainer>
-              <h3 style={{ fontWeight: '400', fontSize: '1rem', paddingBottom: '3%' }}>Descripcion</h3>
+              <h3
+                style={{
+                  fontWeight: "400",
+                  fontSize: "1rem",
+                  paddingBottom: "3%",
+                }}
+              >
+                Descripcion
+              </h3>
               <DescContainer>
                 <p>{product.desc}</p>
               </DescContainer>
-            </Container></ContainerMain>
+            </Container>
+          </ContainerMain>
         </>
       </Layout>
-
     </>
-
   );
 };
 

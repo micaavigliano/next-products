@@ -6,18 +6,18 @@ import {
   InfoContainer,
   ZoneContainer,
   HiddenMsg,
-  Img
+  Img,
 } from "./ListItems.styled";
 import { Items } from "../utils/items";
 import Link from "next/link";
-import _ from "lodash";
+import { isEmpty } from "lodash";
 
 type ListItemsProps = {
   item: any;
 };
 
 const ListItems: React.FC<ListItemsProps> = ({ item }) => {
-  const hasItems = !_.isEmpty(item);
+  const hasItems = !isEmpty(item);
   const listItems = item?.map((item: Items) => {
     return (
       <Item key={item.id}>
@@ -27,13 +27,10 @@ const ListItems: React.FC<ListItemsProps> = ({ item }) => {
           aria-label={`Clickea aqui para ir a la descripcion del producto ${item.title}`}
         >
           <ImgContainer>
-            <Img
-              src={item.thumbnail}
-              alt={item.title}
-            />
+            <Img src={item.thumbnail} alt={item.title} />
           </ImgContainer>
           <InfoContainer>
-            <p style={{ color: 'black', fontSize: '24px' }}>{item.price}</p>
+            <p style={{ color: "black", fontSize: "24px" }}>{item.price}</p>
             <h3>{item.title}</h3>
           </InfoContainer>
           <ZoneContainer>{item.address.state_name}</ZoneContainer>

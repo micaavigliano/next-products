@@ -14,7 +14,6 @@ import Link from "next/link";
 import { faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons";
 import Logo from "../../public/logo-meli.png";
 import Image from "next/image";
-import _ from "lodash";
 
 type SearchBarProps = {
   onSubmit: (value: string) => void;

@@ -2,7 +2,6 @@ import { NextApiRequest, NextApiResponse } from 'next';
 import { Item } from '../types/item';
 import { Author, Attributes } from '../types/common'
 import axios from 'axios';
-import _ from 'lodash'
 
 export default async function getitem(req: NextApiRequest, res: NextApiResponse) {
   try {
